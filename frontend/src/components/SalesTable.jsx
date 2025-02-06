@@ -63,7 +63,6 @@ const SalesTable = () => {
     <div className="bg-white shadow-lg rounded-lg p-6 my-10">
       <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-800 mb-6">Ventas por Productos</h2>
 
-      {/* Filtro de categoría */}
       <div className="mb-4">
         <label htmlFor="categoryFilter" className="text-sm font-semibold text-gray-700">Filtrar por categoría</label>
         <select
@@ -81,7 +80,6 @@ const SalesTable = () => {
         </select>
       </div>
 
-      {/* Filtro de fecha (Responsivo y con flex-wrap) */}
       <div className="flex flex-wrap gap-5 mb-4">
         <div className="w-full sm:w-auto">
           <label htmlFor="startDate" className="text-sm font-semibold text-gray-700">Fecha de inicio</label>
@@ -89,8 +87,8 @@ const SalesTable = () => {
             selected={startDate} 
             onChange={(date) => setStartDate(date)}
             dateFormat="yyyy-MM-dd"
-            className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
-            placeholderText="AÑO-MES-DIA"
+            className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full mx-4"
+            placeholderText="YYYY-MM-DD"
           />
         </div>
 
@@ -100,16 +98,14 @@ const SalesTable = () => {
             selected={endDate} 
             onChange={(date) => setEndDate(date)}
             dateFormat="yyyy-MM-dd"
-            className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
-            placeholderText="AÑO-MES-DIA"
+            className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full mx-4"
+            placeholderText="YYYY-MM-DD"
           />
         </div>
       </div>
 
-      {/* Tabla de datos */}
       <Table currentItems={currentItems} />
 
-      {/* Paginación */}
       <Pagination
         prevPage={prevPage}
         nextPage={nextPage}
