@@ -106,7 +106,7 @@ const SalesTable = () => {
             selected={startDate} 
             onChange={(date) => setStartDate(date)}
             dateFormat="yyyy-MM-dd"
-            className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full mx-4"
+            className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-64 mx-2"
             placeholderText="YYYY-MM-DD"
           />
         </div>
@@ -117,7 +117,7 @@ const SalesTable = () => {
             selected={endDate} 
             onChange={(date) => setEndDate(date)}
             dateFormat="yyyy-MM-dd"
-            className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full mx-4"
+            className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-64 mx-2"
             placeholderText="YYYY-MM-DD"
           />
         </div>
@@ -125,7 +125,7 @@ const SalesTable = () => {
 
       <Table currentItems={currentItems} />
 
-      <div className="flex justify-between items-center mt-4">
+      <div className="flex flex-wrap justify-between items-center mt-4 gap-4">
         <Pagination
           prevPage={prevPage}
           nextPage={nextPage}
@@ -140,7 +140,7 @@ const SalesTable = () => {
 
         <button
           onClick={downloadCSV}
-          className="flex items-center justify-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition duration-200"
+          className="flex items-center justify-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition duration-200 w-full sm:w-auto"
         >
           <FaDownload className="mr-2" /> Descargar CSV
         </button>
