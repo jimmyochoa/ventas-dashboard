@@ -4,11 +4,6 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 const Pagination = ({ prevPage, nextPage, paginate, currentPage, totalPages, pageNumbers, indexOfFirstItem, indexOfLastItem, salesData }) => {
   return (
     <div className="flex items-center justify-between mt-6">
-      <p className="text-xs sm:text-sm text-gray-700">
-        Mostrando <span className="font-medium">{indexOfFirstItem + 1}</span> a{" "}
-        <span className="font-medium">{Math.min(indexOfLastItem, salesData.length)}</span> de{" "}
-        <span className="font-medium">{salesData.length}</span> resultados
-      </p>
       <div className="flex items-center space-x-2">
 
         <button
