@@ -19,17 +19,24 @@ const SalesTable = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await SalesService.getSalesData(startDate, endDate, categoryFilter);
+      const data = await SalesService.getSalesData(startDate, endDate);
       setSalesData(data || []);
-      setFilteredSalesData(data || []);
-
       const uniqueCategories = [...new Set(data.map(item => item.category))];
       setCategories(uniqueCategories);
-      
-      setTotalPages(Math.ceil(data.length / itemsPerPage));
     };
     fetchData();
-  }, [startDate, endDate, categoryFilter, itemsPerPage]);
+  }, [startDate, endDate]);
+
+  useEffect(() => {
+    let filteredData = salesData;
+
+    if (categoryFilter) {
+      filteredData = salesData.filter(item => item.category === categoryFilter);
+    }
+
+    setFilteredSalesData(filteredData);
+    setTotalPages(Math.ceil(filteredData.length / itemsPerPage));
+  }, [salesData, categoryFilter, itemsPerPage]);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -61,6 +68,8 @@ const SalesTable = () => {
   }
 
   const convertToCSV = (data) => {
+    if (data.length === 0) return "";
+    
     const header = Object.keys(data[0]);
     const rows = data.map(item =>
       header.map(field => JSON.stringify(item[field], (key, value) =>
@@ -142,7 +151,7 @@ const SalesTable = () => {
           onClick={downloadCSV}
           className="flex items-center justify-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition duration-200 w-full sm:w-auto"
         >
-          <FaDownload className="mr-2" /> Descargar CSV
+          <FaDownload className="mr-2" /> Descargar Reporte
         </button>
       </div>
     </div>
