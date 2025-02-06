@@ -19,6 +19,23 @@ Este proyecto consiste en una aplicación web de análisis de ventas para una ti
 - **Docker**
 - **Docker Compose**
 
+## Endpoints del backend
+El backend de la aplicación expone los siguientes endpoints en http://localhost:8000:
+
+- **GET /all_sales**: Retorna la lista de ventas.
+  -**Parametros opcionales**
+    - **start_date**: Fecha de inicio del rango de fechas a filtrar.
+    - **end_date**: Fecha de fin del rango de fechas a filtrar.
+    - **category**: Categoría de la venta a filtrar.
+
+- **GET /sales_summary**: Retorna un resumen de las ventas.
+  -**Parametros opcionales**
+    - **start_date**: Fecha de inicio del rango de fechas a filtrar.
+    - **end_date**: Fecha de fin del rango de fechas a filtrar.
+    - **category**: Categoría de la venta a filtrar.
+
+- **GET /top_customers**: Retorna la lista de los clientes con más compras.
+
 ## Instrucciones de Despliegue
 
 ### 1. Clonar el repositorio
