@@ -1,4 +1,3 @@
-
 services:
   backend:
     build:
@@ -17,7 +16,8 @@ services:
       - DB_HOST=postgres-db
       - DB_PORT=5432
     depends_on:
-      - postgres-db
+      postgres-db:
+        condition: service_healthy
     networks:
       - my_network
 
@@ -37,6 +37,27 @@ services:
       - ./scripts:/scripts
     networks:
       - my_network
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 5s
+      retries: 5
+      timeout: 3s
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    networks:
+      - my_network
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
 
 networks:
   my_network:

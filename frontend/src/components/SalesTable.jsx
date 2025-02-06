@@ -18,15 +18,17 @@ const SalesTable = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await SalesService.getSalesData(startDate, endDate, categoryFilter);  // Llamada con los parámetros
+      const data = await SalesService.getSalesData(startDate, endDate, categoryFilter);
       setSalesData(data || []);
       setFilteredSalesData(data || []);
+
       const uniqueCategories = [...new Set(data.map(item => item.category))];
       setCategories(uniqueCategories);
+      
       setTotalPages(Math.ceil(data.length / itemsPerPage));
     };
     fetchData();
-  }, [startDate, endDate, categoryFilter, itemsPerPage]);  // Aseguramos que se vuelve a ejecutar cuando cambian las fechas o el filtro de categoría
+  }, [startDate, endDate, categoryFilter, itemsPerPage]);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;

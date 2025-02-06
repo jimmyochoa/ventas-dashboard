@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { FaDollarSign, FaMapMarkerAlt } from "react-icons/fa"; // Usando íconos
-import SalesService from "../services/salesService"; // Ajusta la ruta de tu servicio
+import { FaDollarSign, FaMapMarkerAlt } from "react-icons/fa";
+import SalesService from "../services/salesService";
 
 const TopCustomersCard = () => {
   const [topCustomers, setTopCustomers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 3; // Limitar a 3 elementos por página
+  const itemsPerPage = 3;
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await SalesService.getTopCustomers(); // Cambia esto según tu endpoint real
+      const data = await SalesService.getTopCustomers();
       setTopCustomers(data || []);
     };
     fetchData();
   }, []);
 
-  // Paginación: obtiene los clientes para la página actual
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = topCustomers.slice(indexOfFirstItem, indexOfLastItem);

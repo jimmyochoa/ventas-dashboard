@@ -10,7 +10,7 @@ const Pagination = ({ prevPage, nextPage, paginate, currentPage, totalPages, pag
         <span className="font-medium">{salesData.length}</span> resultados
       </p>
       <div className="flex items-center space-x-2">
-        {/* Botón para la página anterior */}
+
         <button
           onClick={prevPage}
           disabled={currentPage === 1}
@@ -19,7 +19,6 @@ const Pagination = ({ prevPage, nextPage, paginate, currentPage, totalPages, pag
           <FaChevronLeft className="h-4 sm:h-5 w-4 sm:w-5" />
         </button>
 
-        {/* Botón para ir a la primera página */}
         {currentPage > 3 && (
           <>
             <button
@@ -32,7 +31,6 @@ const Pagination = ({ prevPage, nextPage, paginate, currentPage, totalPages, pag
           </>
         )}
 
-        {/* Páginas intermedias */}
         {pageNumbers.map((pageNumber) => (
           <button
             key={pageNumber}
@@ -47,7 +45,6 @@ const Pagination = ({ prevPage, nextPage, paginate, currentPage, totalPages, pag
           </button>
         ))}
 
-        {/* Botón para ir a la última página */}
         {currentPage < totalPages - 2 && (
           <>
             <span className="text-xs sm:text-sm text-gray-700">...</span>
@@ -60,7 +57,6 @@ const Pagination = ({ prevPage, nextPage, paginate, currentPage, totalPages, pag
           </>
         )}
 
-        {/* Botón para la página siguiente */}
         <button
           onClick={nextPage}
           disabled={currentPage === totalPages}
