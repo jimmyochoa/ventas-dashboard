@@ -1,0 +1,45 @@
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - ./scripts:/scripts
+    environment:
+      - DEBUG=True
+      - DB_NAME=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_HOST=postgres-db
+      - DB_PORT=5432
+    depends_on:
+      - postgres-db
+    networks:
+      - my_network
+
+  postgres-db:
+    image: postgres:15
+    container_name: postgres-db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: sales
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts:/docker-entrypoint-initdb.d
+      - ./scripts:/scripts
+    networks:
+      - my_network
+
+networks:
+  my_network:
+
+volumes:
+  postgres_data:
